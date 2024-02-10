@@ -3,6 +3,7 @@
 #include <cctype>
 #include <algorithm>
 #include "util.h"
+#define fox(i,s,e) for(int i=s;i<=e;i++)
 
 using namespace std;
 std::string convToLower(std::string src)
@@ -15,14 +16,22 @@ std::string convToLower(std::string src)
     to a set of words based on the criteria given in the assignment **/
 std::set<std::string> parseStringToWords(string rawWords)
 {
-
-
-
-
-
-
-
-
+  set<std::string> res;
+  int last=0;
+  fox(i,0,rawWords.length()-1){
+    if(!((rawWords[i]>='0' && rawWords[i]<='9') || (rawWords[i]>='A' && rawWords[i]<='Z') || (rawWords[i]>='a' && rawWords[i]<='z'))){
+      if(i-last>=2){
+        res.insert(rawWords.substr(last,i-last));
+      }
+      last=i+1;
+    }
+    else if(i==rawWords.length()-1){
+      if(i-last>=2){
+        res.insert(rawWords.substr(last,i-last+1));
+      }
+    }
+  }
+  return res;
 
 
 }

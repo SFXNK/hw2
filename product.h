@@ -31,6 +31,8 @@ public:
      */
     virtual void dump(std::ostream& os) const;
 
+    virtual void write(std::ostream& os) const = 0;
+
     /**
      * Accessors and mutators
      */

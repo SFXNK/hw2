@@ -36,3 +36,24 @@ void User::dump(std::ostream& os)
 {
     os << name_ << " "  << balance_ << " " << type_ << endl;
 }
+
+
+void User::addCart(Product* p){
+  cart_.push_back(p);
+}
+std::vector<Product*> User::getCart(){
+  return cart_;
+}
+void User::buyCart(){
+  std::vector<Product*> newcart;
+  for(int i=0;i<cart_.size();i++){
+    if(balance_>=cart_[i]->getPrice() && cart_[i]->getQty()>=1){
+      balance_-=cart_[i]->getPrice();
+      cart_[i]->subtractQty(1);
+    }
+    else{
+      newcart.push_back(cart_[i]);
+    }
+  }
+  cart_=newcart;
+}
